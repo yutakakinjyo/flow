@@ -7,10 +7,14 @@ import (
 )
 
 func max(stock, roll int) int {
-	if re := stock - roll; re < 0 {
+	if stock < roll {
 		roll = stock
 	}
 	return roll
+}
+
+func roll() int {
+	return rand.Intn(6) + 1
 }
 
 func main() {
@@ -18,24 +22,23 @@ func main() {
 	rand.Seed(time.Now().UnixNano())
 	stock := []int{0, 0, 0, 0, 0}
 
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 10; i++ {
 
-		roll := rand.Intn(6) + 1
-		stock[0] += roll
+		stock[0] += roll()
 
-		flow := max(stock[0], rand.Intn(6)+1)
+		flow := max(stock[0], roll())
 		stock[0] -= flow
 		stock[1] += flow
 
-		flow = max(stock[1], rand.Intn(6)+1)
+		flow = max(stock[1], roll())
 		stock[1] -= flow
 		stock[2] += flow
 
-		flow = max(stock[2], rand.Intn(6)+1)
+		flow = max(stock[2], roll())
 		stock[2] -= flow
 		stock[3] += flow
 
-		flow = max(stock[3], rand.Intn(6)+1)
+		flow = max(stock[3], roll())
 		stock[3] -= flow
 		stock[4] += flow
 
