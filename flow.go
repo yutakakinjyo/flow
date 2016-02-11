@@ -25,11 +25,11 @@ func main() {
 
 	rand.Seed(time.Now().UnixNano())
 	worker := []Worker{
-		Worker{0},
-		Worker{0},
-		Worker{0},
-		Worker{0},
-		Worker{0},
+		Worker{},
+		Worker{},
+		Worker{},
+		Worker{},
+		Worker{},
 	}
 	output := 0
 
