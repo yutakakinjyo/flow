@@ -1,7 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
 
 func main() {
-	fmt.Println("hoge")
+	rand.Seed(time.Now().UnixNano())
+	for i := 0; i < 100; i++ {
+		fmt.Println(rand.Intn(6) + 1)
+	}
 }
