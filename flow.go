@@ -21,8 +21,9 @@ func main() {
 
 	rand.Seed(time.Now().UnixNano())
 	stock := []int{0, 0, 0, 0, 0}
+	output := 0
 
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 100; i++ {
 
 		stock[0] += roll()
 
@@ -42,6 +43,9 @@ func main() {
 		stock[3] -= flow
 		stock[4] += flow
 
+		flow = max(stock[4], roll())
+		stock[4] -= flow
+		output += flow
 	}
 
 	fmt.Println("==== Result =====")
@@ -50,5 +54,6 @@ func main() {
 	fmt.Println("stock[2] :", stock[2])
 	fmt.Println("stock[3] :", stock[3])
 	fmt.Println("stock[4] :", stock[4])
+	fmt.Println("output :", output)
 
 }
