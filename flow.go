@@ -6,18 +6,46 @@ import (
 	"time"
 )
 
+func max(stock, roll int) int {
+	if re := stock - roll; re < 0 {
+		roll = stock
+	}
+	return roll
+}
+
 func main() {
-	slice := []int{0, 0, 0, 0, 0, 0}
+
 	rand.Seed(time.Now().UnixNano())
-	for i := 0; i < 10000000; i++ {
+	stock := []int{0, 0, 0, 0, 0}
+
+	for i := 0; i < 100; i++ {
+
 		roll := rand.Intn(6) + 1
-		slice[roll-1] += 1
+		stock[0] += roll
+
+		flow := max(stock[0], rand.Intn(6)+1)
+		stock[0] -= flow
+		stock[1] += flow
+
+		flow = max(stock[1], rand.Intn(6)+1)
+		stock[1] -= flow
+		stock[2] += flow
+
+		flow = max(stock[2], rand.Intn(6)+1)
+		stock[2] -= flow
+		stock[3] += flow
+
+		flow = max(stock[3], rand.Intn(6)+1)
+		stock[3] -= flow
+		stock[4] += flow
+
 	}
 
-	fmt.Println("1 :", slice[0])
-	fmt.Println("2 :", slice[1])
-	fmt.Println("3 :", slice[2])
-	fmt.Println("4 :", slice[3])
-	fmt.Println("5 :", slice[4])
-	fmt.Println("6 :", slice[5])
+	fmt.Println("==== Result =====")
+	fmt.Println("stock[0] :", stock[0])
+	fmt.Println("stock[1] :", stock[1])
+	fmt.Println("stock[2] :", stock[2])
+	fmt.Println("stock[3] :", stock[3])
+	fmt.Println("stock[4] :", stock[4])
+
 }
